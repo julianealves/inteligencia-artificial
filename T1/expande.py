@@ -24,8 +24,7 @@ def main():
     sucessores = expande(nodo_pai)
     
     for nodo in sucessores:
-         print(nodo.estado, nodo.pai, nodo.acao)    #Fiquei com duvida como que é para referenciar o nodo.pai nessa função
-         print(Nodo.calcula_custo(nodo, nodo_pai))  #Outra duvida foi como colocar o custo junto das outras informações. Se eu tentava juntar dava erro.
+         print(nodo.estado, nodo.pai, nodo.acao, Nodo.get_custo(nodo))    #Fiquei com duvida como que é para referenciar o nodo.pai nessa função
 
     return 0
 
