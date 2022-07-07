@@ -11,9 +11,8 @@ nodo_filho3 = Nodo(estado="23_541687", pai=nodo_pai, acao="direita")
 def expande(nodo):
     
     listOfNodes = []
-    listOfSucc = sucessor(nodo.estado)         
- 
-        
+    listOfSucc = sucessor(nodo.estado)     
+         
     for acao, estado in listOfSucc:
         nodoSucc = Nodo(estado=estado, pai=nodo, acao=acao)
         listOfNodes.append(nodoSucc)        
@@ -21,13 +20,12 @@ def expande(nodo):
     return listOfNodes
 
 
-
 def main():
     sucessores = expande(nodo_pai)
     
     for nodo in sucessores:
-         print(nodo.estado, nodo.pai, nodo.acao)
-         print(Nodo.calcula_custo(nodo, nodo_pai))
+         print(nodo.estado, nodo.pai, nodo.acao)    #Fiquei com duvida como que é para referenciar o nodo.pai nessa função
+         print(Nodo.calcula_custo(nodo, nodo_pai))  #Outra duvida foi como colocar o custo junto das outras informações. Se eu tentava juntar dava erro.
 
     return 0
 
