@@ -13,9 +13,9 @@ class Nodo:
         self.estado: str = estado
         self.pai: Nodo = pai
         self.acao: str = acao
-        self.custo: int = self.calcula_custo(self.pai)
+        self.custo: int = self._calcula_custo(self.pai)
 
-    def calcula_custo(self, nodo: Nodo) -> int:
+    def _calcula_custo(self, nodo: Nodo) -> int:
         """
         Calcula o custo do caminho a partir do estado inicial ate este nodo
 
@@ -25,7 +25,7 @@ class Nodo:
         if nodo is None:
             return 0
         else:
-            return 1 + self.calcula_custo(nodo.pai)
+            return 1 + self._calcula_custo(nodo.pai)
 
     def get_custo(self) -> int:
         """
