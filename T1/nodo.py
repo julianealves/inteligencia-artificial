@@ -2,7 +2,7 @@ from __future__ import annotations
 
 
 class Nodo:
-    def __init__(self, estado: str, pai: Nodo = None, acao: str = None) -> None:
+    def __init__(self, estado: str, pai: Nodo, acao: str, custo: int) -> None:
         """
         Classe Nodo representa um nodo do grafo de busca para a solucao do problem 8-puzzle
 
@@ -13,22 +13,26 @@ class Nodo:
         self.estado: str = estado
         self.pai: Nodo = pai
         self.acao: str = acao
-        self.custo: int = self._calcula_custo(self.pai)
+        self.custo: int = custo
 
-    def _calcula_custo(self, nodo: Nodo) -> int:
+    def calcula_custo(self) -> int:
         """
         Calcula o custo do caminho a partir do estado inicial ate este nodo
 
-        :param nodo: referencia ao nodo pai para a recursao
         :return: custo do nodo ate o estado inicial do grafo
         """
-        if nodo is None:
-            return 0
-        else:
-            return 1 + self._calcula_custo(nodo.pai)
+
+        return 1 + self.pai.get_custo()
 
     def get_custo(self) -> int:
         """
         :return: custo do nodo ate o estado inicial do grafo
         """
         return self.custo
+
+    def set_custo(self, custo: int) -> None:
+        """
+        :param custo: custo do nodo ate o estado inicial do grafo
+        :return: None
+        """
+        self.custo = custo

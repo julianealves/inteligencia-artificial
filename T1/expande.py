@@ -15,7 +15,9 @@ def expande(nodo: Nodo) -> List:
     listOfSucc = sucessor(nodo.estado)     
          
     for acao, estado in listOfSucc:
-        nodoSucc = Nodo(estado=estado, pai=nodo, acao=acao)
+        nodoSucc = Nodo(estado=estado, pai=nodo, acao=acao, custo=0)
+        # atualiza custo
+        nodoSucc.set_custo(nodoSucc.calcula_custo())
         listOfNodes.append(nodoSucc)        
    
     return listOfNodes

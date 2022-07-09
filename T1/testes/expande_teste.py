@@ -4,12 +4,12 @@ from T1.nodo import Nodo
 
 
 class ExpandeTeste(unittest.TestCase):
-    def test_something(self):
-        nodo_pai = Nodo(estado="2_3541687")
-        nodo_filho1 = Nodo(estado="_23541687", pai=nodo_pai, acao="esquerda")
-        nodo_filho2 = Nodo(estado="2435_1687", pai=nodo_pai, acao="abaixo")
-        nodo_filho3 = Nodo(estado="23_541687", pai=nodo_pai, acao="direita")
-        nodo_filho4 = Nodo(estado="24351_687", pai=nodo_filho2, acao="direita")
+    def test_expande(self):
+        nodo_pai = Nodo(estado="2_3541687", custo=0, pai=None, acao=None)
+        nodo_filho1 = Nodo(estado="_23541687", pai=nodo_pai, acao="esquerda", custo=1)
+        nodo_filho2 = Nodo(estado="2435_1687", pai=nodo_pai, acao="abaixo", custo=1)
+        nodo_filho3 = Nodo(estado="23_541687", pai=nodo_pai, acao="direita", custo=1)
+        nodo_filho4 = Nodo(estado="24351_687", pai=nodo_filho2, acao="direita", custo=2)
 
         sucessores = expande(nodo_pai)
 
@@ -58,6 +58,19 @@ class ExpandeTeste(unittest.TestCase):
         self.assertEqual(sucessores[2].estado, "24351768_")
         self.assertEqual(sucessores[2].acao, "abaixo")
         self.assertEqual(sucessores[2].custo, 3)
+
+        pai = Nodo("185432_67", None, "abaixo", 2)  # o pai do pai esta incorreto, mas nao interfere no teste
+        # a resposta esperada deve conter nodos com os seguintes atributos (ordem dos nodos nao importa)
+        resposta_esperada = {
+            ("185_32467", pai, "acima", 3),
+            ("1854326_7", pai, "direita", 3),
+        }
+
+        resposta = expande(pai)  # obtem a resposta chamando a funcao implementada
+        self.assertEqual(2, len(resposta))  # verifica se foram retornados 2 nodos
+        for nodo in resposta:
+            # verifica se a tupla com os atributos do nodo esta' presente no conjunto com os nodos esperados
+            self.assertIn((nodo.estado, nodo.pai, nodo.acao, nodo.custo), resposta_esperada)
 
 
 if __name__ == '__main__':
