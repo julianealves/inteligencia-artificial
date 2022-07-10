@@ -1,5 +1,5 @@
-from T1.nodo import Nodo
-from T1.sucessor import sucessor
+from nodo import Nodo
+from sucessor import sucessor
 from typing import List
 
 

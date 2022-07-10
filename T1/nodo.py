@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 
-class Nodo:
+class Nodo(object):
     def __init__(self, estado: str, pai: Nodo, acao: str, custo: int) -> None:
         """
         Classe Nodo representa um nodo do grafo de busca para a solucao do problem 8-puzzle
@@ -14,6 +14,7 @@ class Nodo:
         self.pai: Nodo = pai
         self.acao: str = acao
         self.custo: int = custo
+        self.funcao = 0
 
     def calcula_custo(self) -> int:
         """
@@ -36,3 +37,12 @@ class Nodo:
         :return: None
         """
         self.custo = custo
+
+    def set_funcao(self, funcao: int) -> None:
+        self.funcao = funcao
+
+    def __lt__(self, other):
+        return self.lt(self.funcao, other.funcao)
+
+    def lt(self, funcao1, funcao2):
+        return funcao1 < funcao2
