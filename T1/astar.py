@@ -89,7 +89,7 @@ def astar_hamming(estado: str) -> Optional[List]:
             vizinhos = expande(v)
             for s in vizinhos:
                 # verifica se estado ja foi visitado
-                if estado_ja_visitado(estados_explorados, s):
+                if estado_nao_visitado(estados_explorados, s):
                     f = s.get_custo() + hamming(s.estado)
                     s.set_funcao(f)
                     heapq.heappush(fronteira, s)
@@ -138,7 +138,7 @@ def astar_manhattan(estado: str) -> Optional[List]:
             vizinhos = expande(v)
             for s in vizinhos:
                 # verifica se estado ja foi visitado
-                if estado_ja_visitado(estados_explorados, s):
+                if estado_nao_visitado(estados_explorados, s):
                     f = s.get_custo() + manhattan(s.estado)
                     s.set_funcao(f)
                     heapq.heappush(fronteira, s)
@@ -157,7 +157,7 @@ def estado_com_menor_custo(estados_fronteira: dict, s: Nodo) -> bool:
     return custo is not None and estados_fronteira[s.estado] < s.get_custo()
 
 
-def estado_ja_visitado(estados_explorados: dict, s: Nodo) -> bool:
+def estado_nao_visitado(estados_explorados: dict, s: Nodo) -> bool:
     try:
         custo = estados_explorados[s.estado]
     except KeyError:
