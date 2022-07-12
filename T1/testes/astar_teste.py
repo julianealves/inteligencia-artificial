@@ -20,6 +20,9 @@ class AstarTeste(unittest.TestCase):
         self.assertEqual(14, len(astar_hamming("8134_2765")))
         self.assertEqual(14, len(astar_manhattan("8134_2765")))
 
+        self.assertIsNone(astar_manhattan("185423_67"))
+        self.assertIsNone(astar_hamming("185423_67"))
+
 
 if __name__ == "__main__":
     unittest.main()

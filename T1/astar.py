@@ -14,7 +14,7 @@ def hamming(estado: str) -> int:
     h = 0
     solucao = "12345678_"
     for i in range(9):
-        if estado[i] != solucao[i] :
+        if estado[i] != solucao[i]:
             h = h + 1
     # Retorna -1 para ignorar o espaco
     return h - 1
@@ -38,7 +38,8 @@ def manhattan(estado: str) -> int:
         coordenadas_atual = coordenadas_pecas[str(estado.find(s) + 1)]
         coordenadas_esperada = coordenadas_pecas[s]
 
-        h = h + (abs(coordenadas_atual[0] - coordenadas_esperada[0]) + abs(coordenadas_atual[1] - coordenadas_esperada[1]))
+        h = h + (abs(coordenadas_atual[0] - coordenadas_esperada[0]) + abs(
+            coordenadas_atual[1] - coordenadas_esperada[1]))
 
     return h
 
@@ -66,9 +67,10 @@ def astar_hamming(estado: str) -> Optional[List]:
     :return: lista de movimentos para solucionar o 8-puzzle
     """
     solucao = "12345678_"
-    explorados = []
+    explorados = {}
     fronteira = []
-    estados_visitados = []
+    estados_explorados = {}
+    estados_fronteira = {}
     nodo_raiz = Nodo(estado=estado, pai=None, acao=None, custo=0)
     # f(v) = g(v) + h(v), onde g(v) eh o custo do caminho do estado inicial ate v e h(v) eh a distancia heuristica
     f = nodo_raiz.get_custo() + hamming(estado)
@@ -81,17 +83,28 @@ def astar_hamming(estado: str) -> Optional[List]:
             print(f"Nós expandidos: {len(explorados)}")
             print(f"Custo: {v.get_custo()}")
             return caminho_s_v(v, [])
-        if v not in explorados:
-            explorados.append(v)
-            estados_visitados.append(v.estado)
+        if not ja_explorado(explorados, v):
+            explorados[v] = 0
+            estados_explorados[v.estado] = v.get_custo()
             vizinhos = expande(v)
             for s in vizinhos:
                 # verifica se estado ja foi visitado
-                if s.estado not in estados_visitados:
+                if estado_ja_visitado(estados_explorados, s):
                     f = s.get_custo() + hamming(s.estado)
                     s.set_funcao(f)
                     heapq.heappush(fronteira, s)
+                    estados_fronteira[s.estado] = s.get_custo()
+                if estado_com_menor_custo(estados_fronteira, s):
+                    continue
     return None
+
+
+def ja_explorado(explorados: dict, v: Nodo) -> bool:
+    try:
+        nodo = explorados[v]
+    except KeyError:
+        nodo = None
+    return nodo is not None
 
 
 def astar_manhattan(estado: str) -> Optional[List]:
@@ -103,9 +116,10 @@ def astar_manhattan(estado: str) -> Optional[List]:
     :return: lista de movimentos para solucionar o 8-puzzle
     """
     solucao = "12345678_"
-    explorados = []
+    explorados = {}
     fronteira = []
-    estados_visitados = []
+    estados_explorados = {}
+    estados_fronteira = {}
     nodo_raiz = Nodo(estado=estado, pai=None, acao=None, custo=0)
     # f(v) = g(v) + h(v), onde g(v) eh o custo do caminho do estado inicial ate v e h(v) eh a distancia heuristica
     f = nodo_raiz.get_custo() + manhattan(estado)
@@ -118,20 +132,41 @@ def astar_manhattan(estado: str) -> Optional[List]:
             print(f"Nós expandidos: {len(explorados)}")
             print(f"Custo: {v.get_custo()}")
             return caminho_s_v(v, [])
-        if v not in explorados:
-            explorados.append(v)
-            estados_visitados.append(v.estado)
+        if not ja_explorado(explorados, v):
+            explorados[v] = 0
+            estados_explorados[v.estado] = v.get_custo()
             vizinhos = expande(v)
             for s in vizinhos:
                 # verifica se estado ja foi visitado
-                if s.estado not in estados_visitados:
+                if estado_ja_visitado(estados_explorados, s):
                     f = s.get_custo() + manhattan(s.estado)
                     s.set_funcao(f)
                     heapq.heappush(fronteira, s)
+                    estados_fronteira[s.estado] = s.get_custo()
+                if estado_com_menor_custo(estados_fronteira, s):
+                    continue
     return None
 
 
-if __name__=="__main__":
+def estado_com_menor_custo(estados_fronteira: dict, s: Nodo) -> bool:
+    try:
+        custo = estados_fronteira[s.estado]
+    except KeyError:
+        custo = None
+
+    return custo is not None and estados_fronteira[s.estado] < s.get_custo()
+
+
+def estado_ja_visitado(estados_explorados: dict, s: Nodo) -> bool:
+    try:
+        custo = estados_explorados[s.estado]
+    except KeyError:
+        custo = None
+
+    return (custo is None) or (custo is not None and s.get_custo() < estados_explorados[s.estado])
+
+
+if __name__ == "__main__":
     import time
 
     print("*** A* - Hamming ***")
@@ -149,4 +184,3 @@ if __name__=="__main__":
     fim = time.time()
     print(f"Tempo execução Manhattan: {fim - inicio}")
     print(f"Caminho: {caminho}")
-
