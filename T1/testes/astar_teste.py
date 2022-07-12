@@ -22,6 +22,8 @@ class AstarTeste(unittest.TestCase):
 
         self.assertIsNone(astar_manhattan("185423_67"))
         self.assertIsNone(astar_hamming("185423_67"))
+        self.assertIsNone(astar_manhattan("12345687_"))
+        self.assertIsNone(astar_hamming("12345687_"))
 
 
 if __name__ == "__main__":
