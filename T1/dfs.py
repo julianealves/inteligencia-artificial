@@ -4,7 +4,7 @@ from expande import expande
 from astar import caminho_s_v
 import time
 
-
+# Não está pronto, vou tentar arrumar amanhã, mas se tiverem alguma ideia, é muito bem vinda.
 
 def dfs(estado: str) -> List:
     
@@ -21,8 +21,7 @@ def dfs(estado: str) -> List:
         v = fronteira.pop()
         
         if v.estado == solucao:
-            return caminho_s_v(v, [])
-        
+            return caminho_s_v(v, [])        
         
         if v not in explorados:
             explorados.append(v)
@@ -37,7 +36,7 @@ def dfs(estado: str) -> List:
     
 def main():
    inicio = time.time()
-   n = dfs("185423_67")
+   n = dfs("23_541687")
    fim = time.time()
    print(f"Tempo execução: {fim - inicio}")
    print(n)
