@@ -1,4 +1,4 @@
-# inteligencia-artificial
+# Inteligencia Artificial
 Trabalhos da cadeira de IA (INF01048) - 2022/1
 
 Juliane da Rocha Alves  
