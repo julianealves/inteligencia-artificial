@@ -1,5 +1,5 @@
 import unittest
-from T1.sucessor import sucessor
+from T1.solucao import sucessor
 
 
 class SucessorTeste(unittest.TestCase):

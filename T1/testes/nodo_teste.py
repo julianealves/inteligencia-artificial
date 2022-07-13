@@ -1,5 +1,5 @@
 import unittest
-from T1.nodo import Nodo
+from T1.solucao import Nodo
 
 
 class NodoTeste(unittest.TestCase):

@@ -1,5 +1,5 @@
 import unittest
-from T1.astar import astar_hamming, astar_manhattan
+from T1.solucao import astar_hamming, astar_manhattan
 
 
 class AstarTeste(unittest.TestCase):

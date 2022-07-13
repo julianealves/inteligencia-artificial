@@ -1,5 +1,5 @@
 import unittest
-from T1.dfs import dfs
+from T1.solucao import dfs
 
 
 class DFSTeste(unittest.TestCase):

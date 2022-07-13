@@ -1,6 +1,5 @@
 import unittest
-from T1.expande import expande
-from T1.nodo import Nodo
+from T1.solucao import Nodo, expande
 
 
 class ExpandeTeste(unittest.TestCase):
