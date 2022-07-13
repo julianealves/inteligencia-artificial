@@ -5,7 +5,7 @@ Juliane da Rocha Alves - 00285681 - Turma B
 Luiza Martins Spinelli Alves - 00326010 - Turma A  
 Maria Eduarda Neves Toneto - 00323751 - Turma A  
 
-- **Algoritmo BFS:** Nós expandidos =  
+- **Algoritmo BFS:** Nós expandidos =  109477
                  Custo =  23
                  Tempo execução =  1.9679319858551025
 
