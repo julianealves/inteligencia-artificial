@@ -1,5 +1,7 @@
 import random
 import sys
+from advsearch.othello.board import Board
+import numpy as np
 
 # Voce pode criar funcoes auxiliares neste arquivo
 # e tambem modulos auxiliares neste pacote.
@@ -19,4 +21,60 @@ def make_move(the_board, color):
     # a primeira jogada com as pretas.
     # Remova-o e coloque a sua implementacao da poda alpha-beta
     return random.choice([(2, 3), (4, 5), (5, 4), (3, 2)])
+
+
+class MinMaxPodaAlphaBeta():
+    def __init__(self, the_board, color):
+        self.board = the_board
+        self.color = color
+        self.depth = 10
+
+    def minmax(self, the_board, color):
+        value, action = self._max(self.board, -np.inf, np.inf, self.depth)
+        return value, action
+
+    def _max(self, board, alpha, beta, depth):
+        if depth == 0:
+            return self.calculate_points(board)
+
+        value = -np.inf
+        action = None
+
+        for s in board.legal_moves(self.color):
+            board_copy = board.deepcopy()
+            board_copy.process_move(s, self.color)
+            value = max(value, self._min(board_copy, alpha, beta, depth-1))
+            action = s
+            alpha = max(alpha, value)
+
+            if alpha > beta:
+                break
+
+        return alpha, action
+
+    def _min(self, board, alpha, beta, depth):
+        if depth == 0:
+            return self.calculate_points(board)
+
+        value = np.inf
+        action = None
+
+        for s in board.legal_moves(self.color):
+            board_copy = board.deepcopy()
+            board_copy.process_move(s, self.color)
+            value = min(value, self._max(board_copy, alpha, beta, depth-1))
+            action = s
+            alpha = min(beta, value)
+
+            if beta < alpha:
+                break
+
+        return beta, action
+
+    def calculate_points(self, board):
+        """
+        Metodo que calcula os pontos dado o estado atual do board
+        """
+        return 1
+
 
