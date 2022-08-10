@@ -18,9 +18,6 @@ def make_move(the_board, color):
     :param color: a character indicating the color to make the move ('B' or 'W')
     :return: (int, int) tuple with x, y indexes of the move (remember: 0 is the first row/column)
     """
-    # o codigo abaixo apenas retorna um movimento aleatorio valido para
-    # a primeira jogada com as pretas.
-    # Remova-o e coloque a sua implementacao da poda alpha-beta
 
     game = MinMaxPodaAlphaBeta(the_board, color)
 
@@ -37,13 +34,31 @@ class MinMaxPodaAlphaBeta:
         self.opponent_color = self._opponent_color(color)
 
     def _opponent_color(self, color):
+        """
+        Return the color of the opponent
+        :param color: the player color
+        :return: the opponent color
+        """
         return "B" if color == "W" else "W"
 
     def minmax(self):
+        """
+        Returns a move on the board using the MinMax with Alpha-Beta pruning
+        :return: the score and the move on the board
+        """
         value, action = self._max(self.board, -np.inf, np.inf, self.depth, self.color)
         return value, action
 
     def _max(self, board, alpha, beta, depth, color):
+        """
+        Returns a move that maximize the score
+        :param board: the game board
+        :param alpha: the alpha used for the pruning
+        :param beta: the beta used for the pruning
+        :param depth: the depth in the search graph
+        :param color: the color of the player
+        :return: the value of the alpha and the move on the board
+        """
         if depth == 0:
             return self.calculate_points(board, color), None
 
@@ -71,6 +86,15 @@ class MinMaxPodaAlphaBeta:
         return alpha, action
 
     def _min(self, board, alpha, beta, depth, color):
+        """
+        Returns a move that minimiza the score
+        :param board: the game board
+        :param alpha: the alpha used for the pruning
+        :param beta: the beta used for the pruning
+        :param depth: the depth in the search graph
+        :param color: the color of the player
+        :return: the value of the beta and the move on the board
+        """
         if depth == 0:
             return self.calculate_points(board, color), None
 
@@ -99,6 +123,9 @@ class MinMaxPodaAlphaBeta:
 
     def calculate_points(self, board, color):
         """
-        Metodo que calcula os pontos dado o estado atual do board
+        Calculates the score for a color giving the state of the board
+        :param board: the game board
+        :param color: the color of the player
+        :return: the score of the player giving their color
         """
         return random.randint(0, 9)
