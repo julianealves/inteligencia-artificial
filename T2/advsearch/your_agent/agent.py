@@ -47,20 +47,23 @@ class MinMaxPodaAlphaBeta:
         if depth == 0:
             return self.calculate_points(board, color), None
 
-        value = -np.inf
-        action = None
-
+        best_value = -np.inf
         legal_moves = board.legal_moves(color)
 
         if len(legal_moves) == 0:
             return 0, (-1, -1)
 
+        action = legal_moves[-1]
+
         for s in legal_moves:
             board_copy = deepcopy(board)
             board_copy.process_move(s, color)
-            value = max(value, self._min(board_copy, alpha, beta, depth-1, self._opponent_color(color))[0])
-            action = s
-            alpha = max(alpha, value)
+            value = max(best_value, self._min(board_copy, alpha, beta, depth-1, self._opponent_color(color))[0])
+
+            if value != best_value:
+                best_value = value
+                action = s
+                alpha = max(alpha, value)
 
             if alpha > beta:
                 break
@@ -71,20 +74,23 @@ class MinMaxPodaAlphaBeta:
         if depth == 0:
             return self.calculate_points(board, color), None
 
-        value = np.inf
-        action = None
-
+        best_value = np.inf
         legal_moves = board.legal_moves(color)
 
         if len(legal_moves) == 0:
             return 0, (-1, -1)
 
+        action = legal_moves[-1]
+
         for s in legal_moves:
             board_copy = deepcopy(board)
             board_copy.process_move(s, color)
-            value = min(value, self._max(board_copy, alpha, beta, depth-1, self._opponent_color(color))[0])
-            action = s
-            alpha = min(beta, value)
+            value = min(best_value, self._max(board_copy, alpha, beta, depth-1, self._opponent_color(color))[0])
+
+            if value != best_value:
+                best_value = value
+                action = s
+                alpha = min(beta, value)
 
             if beta < alpha:
                 break
