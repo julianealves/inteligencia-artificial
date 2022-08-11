@@ -8,13 +8,13 @@ Maria Eduarda Neves Toneto - 00323751 - Turma A
 
 **NOTA:** Todas as bibliotecas utilizadas no trabalho são bibliotecas nativas do Python, nenhuma biblioteca extra foi instalada.
 
-**Função de Avaliação:**
+**- Função de Avaliação:**
 
-**Critério de Parada:**
+**- Critério de Parada:**
 
-**Melhorias:**
+**- Melhorias:**
 
-**Decisões e Dificuldades:**
+**- Decisões e Dificuldades:**
 
-**Bibliografia:**
-  Material de aula sobre algoritmo minimax com poda alfa-beta.
+**- Bibliografia:**
+    Material de aula sobre algoritmo minimax com poda alfa-beta.
