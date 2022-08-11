@@ -128,4 +128,11 @@ class MinMaxPodaAlphaBeta:
         :param color: the color of the player
         :return: the score of the player giving their color
         """
-        return random.randint(0, 9)
+        points = 0
+
+        for i in range(8):
+            for j in range(8):
+                if board.tiles[i][j] == color:
+                    points += 1
+        
+        return points
