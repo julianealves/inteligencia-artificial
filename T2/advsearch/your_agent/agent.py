@@ -1,17 +1,10 @@
-import random
-import sys
+from typing import Tuple
 from advsearch.othello.board import Board
 import numpy as np
 from copy import deepcopy
 
-# Voce pode criar funcoes auxiliares neste arquivo
-# e tambem modulos auxiliares neste pacote.
-#
-# Nao esqueca de renomear 'your_agent' com o nome
-# do seu agente.
 
-
-def make_move(the_board, color):
+def make_move(the_board: Board, color: str) -> Tuple[int, int]:
     """
     Returns an Othello move
     :param the_board: a board.Board object with the current game state
@@ -27,13 +20,13 @@ def make_move(the_board, color):
 
 
 class MinMaxPodaAlphaBeta:
-    def __init__(self, the_board, color):
-        self.board = the_board
-        self.color = color
-        self.depth = 4
-        self.opponent_color = self._opponent_color(color)
+    def __init__(self, the_board: Board, color: str) -> None:
+        self.board: Board = the_board
+        self.color: str = color
+        self.depth: int = 4
+        self.opponent_color: str = self._opponent_color(color)
 
-    def _opponent_color(self, color):
+    def _opponent_color(self, color: str) -> str:
         """
         Return the color of the opponent
         :param color: the player color
@@ -41,7 +34,7 @@ class MinMaxPodaAlphaBeta:
         """
         return "B" if color == "W" else "W"
 
-    def minmax(self):
+    def minmax(self) -> Tuple[int, Tuple[int, int]]:
         """
         Returns a move on the board using the MinMax with Alpha-Beta pruning
         :return: the score and the move on the board
@@ -49,7 +42,7 @@ class MinMaxPodaAlphaBeta:
         value, action = self._max(self.board, -np.inf, np.inf, self.depth, self.color)
         return value, action
 
-    def _max(self, board, alpha, beta, depth, color):
+    def _max(self, board: Board, alpha: int, beta: int, depth: int, color: str) -> Tuple[int, Tuple[int, int]]:
         """
         Returns a move that maximize the score
         :param board: the game board
@@ -85,7 +78,7 @@ class MinMaxPodaAlphaBeta:
 
         return alpha, action
 
-    def _min(self, board, alpha, beta, depth, color):
+    def _min(self, board: Board, alpha: int, beta: int, depth: int, color: str) -> Tuple[int, Tuple[int, int]]:
         """
         Returns a move that minimiza the score
         :param board: the game board
@@ -121,7 +114,7 @@ class MinMaxPodaAlphaBeta:
 
         return beta, action
 
-    def calculate_points(self, board, color):
+    def calculate_points(self, board: Board, color: str) -> int:
         """
         Calculates the score for a color giving the state of the board
         :param board: the game board
