@@ -71,7 +71,8 @@ class MinMaxPodaAlphaBeta:
             if value != best_value:
                 best_value = value
                 action = s
-                alpha = max(alpha, value)
+
+            alpha = max(alpha, best_value)
 
             if alpha > beta:
                 break
@@ -107,7 +108,8 @@ class MinMaxPodaAlphaBeta:
             if value != best_value:
                 best_value = value
                 action = s
-                beta = min(beta, value)
+
+            beta = min(beta, value)
 
             if beta < alpha:
                 break
