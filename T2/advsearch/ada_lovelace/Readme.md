@@ -21,4 +21,5 @@ Maria Eduarda Neves Toneto - 00323751 - Turma A
     Uma dificuldade enfrentada pelo grupo durante o desenvolvimento do trabalho foi o critério de parada. Achamos que o ideal seria a busca ir mais fundo na árvore para obtermos um melhor desempenho. Entretanto, não teríamos um retorno até 5 segundos, que era um dos nossos objetivos, por isso decidimos que o limite máximo da busca seria até o nível 4. 
 
 **- Bibliografia:**
-    Material de aula sobre algoritmo minimax com poda alfa-beta.
+    Material de aula sobre algoritmo minimax com poda alfa-beta;
+    Quiescence Search - https://en.wikipedia.org/wiki/Quiescence_search.
