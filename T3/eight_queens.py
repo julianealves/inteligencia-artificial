@@ -1,3 +1,7 @@
+from copy import deepcopy
+import numpy as np
+
+
 def evaluate(individual):
     """
     Recebe um indivíduo (lista de inteiros) e retorna o número de ataques
@@ -7,7 +11,45 @@ def evaluate(individual):
     :param individual:list
     :return:int numero de ataques entre rainhas no individuo recebido
     """
-    raise NotImplementedError  # substituir pelo seu codigo
+    attacks = 0
+    # Conta o numero de ataques na mesma linha
+    for i in range(len(individual)):
+        for j in range(i+1, len(individual)):
+            if individual[i] == individual[j]:
+                attacks = attacks + 1
+
+    # Conta numero de ataques nas diagonais
+    max_cols = len(individual) - 1
+    max_rows = len(individual)
+    min_row = 1
+    min_col = 0
+    # Diagonal para cima
+    for i in range(len(individual)):
+        if individual[i] == 8 or i == max_cols:
+            pass
+        else:
+            diagonal_cima = (individual[i] + 1, i + 1)
+            for j in range(len(individual)):
+                if individual[diagonal_cima[1]] == diagonal_cima[0]:
+                    attacks = attacks + 1
+                if diagonal_cima[0] == max_rows or diagonal_cima[1] == max_cols:
+                    break
+                diagonal_cima = (diagonal_cima[0]+1, diagonal_cima[1]+1)
+
+    # Diagonal para baixo
+    for i in range(len(individual)):
+        if individual[i] == 1 or i == max_cols:
+            pass
+        else:
+            diagonal_baixo = (individual[i] - 1, i + 1)
+            for j in range(len(individual)):
+                if individual[diagonal_baixo[1]] == diagonal_baixo[0]:
+                    attacks = attacks + 1
+                if diagonal_baixo[0] == min_row or diagonal_baixo[1] == max_cols:
+                    break
+                diagonal_baixo = (diagonal_baixo[0] - 1, diagonal_baixo[1] + 1)
+
+    return attacks
 
 
 def tournament(participants):
@@ -17,7 +59,15 @@ def tournament(participants):
     :param participants:list - lista de individuos
     :return:list melhor individuo da lista recebida
     """
-    raise NotImplementedError  # substituir pelo seu codigo
+    best_evaluation = np.inf
+    best_individual = None
+    for p in participants:
+        evaluation = evaluate(p)
+        if evaluation < best_evaluation:
+            best_evaluation = evaluation
+            best_individual = p
+
+    return best_individual
 
 
 def crossover(parent1, parent2, index):
@@ -60,3 +110,14 @@ def run_ga(g, n, k, m, e):
     :return:list - melhor individuo encontrado
     """
     raise NotImplementedError  # substituir pelo seu codigo
+
+
+if __name__=="__main__":
+    individual = [2, 2, 4, 8, 1, 6, 3, 4]
+    print(f"Numero de ataques: {evaluate(individual)}")
+
+    individual = [2, 7, 4, 8, 1, 6, 3, 4]
+    print(f"Numero de ataques: {evaluate(individual)}")
+
+    individual = [2, 2, 2, 2, 2, 2, 2, 2]
+    print(f"Numero de ataques: {evaluate(individual)}")
