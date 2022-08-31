@@ -84,22 +84,17 @@ def crossover(parent1, parent2, index):
     :param index:int
     :return:list,list
     """
-    crossoverList = []
-    parent1_copy = []   
-    parent1_copy = parent1.copy()
-    parent2_copy = []   
-    parent2_copy = parent2.copy()
+
+    parent1_copy = deepcopy(parent1)
+    parent2_copy = deepcopy(parent2)
     
     i = index 
     while i < len(parent1):
-         parent1_copy[i] = parent2[i]
-         parent2_copy[i] = parent1[i]
-         i += 1
-    
-    crossoverList.append(parent1_copy)
-    crossoverList.append(parent2_copy)
-    
-    return crossoverList
+        parent1_copy[i] = parent2[i]
+        parent2_copy[i] = parent1[i]
+        i += 1
+
+    return parent1_copy, parent2_copy
 
 
 def mutate(individual, m):
