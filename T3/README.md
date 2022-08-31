@@ -9,10 +9,10 @@ Maria Eduarda Neves Toneto - 00323751 - Turma A
 
 **1. Genética da realeza:**
 
-**2. Não me perguntes onde fica o Alegrete...:** Após realizar diversos testes alterando-se o valor de theta_0, theta_1, o número de iterações e o valor de alpha, chegou-se nos seguintes valores:
+**2. Não me perguntes onde fica o Alegrete...:** Após realizar diversos testes alterando-se o valor de theta_0, theta_1, o número de iterações e o valor de alpha, chegou-se nos seguintes resultados:
    
    - ```theta_0```: -1
    - ```theta_1```: 1
-   - ```alpha```: 0.0001
-   - ```num_iterations```: 500
-   - ```MSE final```: 9.568021564419073
+   - ```alpha```: 0.001
+   - ```num_iterations```: 10000
+   - ```MSE final```: 8.52854301222427
