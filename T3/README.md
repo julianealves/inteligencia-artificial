@@ -1,5 +1,5 @@
 # Inteligência Artificial
-Trabalho 2 da cadeira de IA (INF01048) - 2022/1
+Trabalho 3 da cadeira de IA (INF01048) - 2022/1
 
 Juliane da Rocha Alves - 00285681 - Turma B  
 Luiza Martins Spinelli Alves - 00326010 - Turma A  
