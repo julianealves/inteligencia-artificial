@@ -117,6 +117,17 @@ def mutate(individual, m):
         
     return individual
 
+def create_population(n):
+    """
+    n vetores aleatorios com 8 indices
+    """
+    raise NotImplementedError
+    
+def select_individuals(k):
+    """
+    seleciona k individuos aleatorios de uma população
+    """
+    raise NotImplementedError
 
 def run_ga(g, n, k, m, e):
     """
@@ -128,7 +139,33 @@ def run_ga(g, n, k, m, e):
     :param e:int - número de indivíduos no elitismo
     :return:list - melhor individuo encontrado
     """
-    raise NotImplementedError  # substituir pelo seu codigo
+    p1 = None
+    p2 = None
+    f1 = None
+    f2 = None
+    best_individual = None
+    
+    population = create_population(n)
+    for i in g:
+        population_copy = deepcopy(population)
+        new_population=[]
+        for j in e:
+            individual = tournament(population_copy)
+            population_copy.remove(individual)
+            new_population.append(individual)
+        while len(new_population) < n:
+            p1 = tournament(population) 
+            population.remove(p1)
+            p2 = tournament(population)
+            population.append(p1)
+            f1, f2 = crossover(p1, p2, 3)
+            f1 = mutate(f1, m)
+            f2 = mutate(f2, m)
+            new_population.append(f1)
+            new_population.append(f2)            
+        population = deepcopy(new_population)    
+        best_individual = tournament(population)
+    return best_individual 
 
 
 if __name__=="__main__":
