@@ -127,7 +127,16 @@ def select_individuals(k):
     """
     seleciona k individuos aleatorios de uma população
     """
-    raise NotImplementedError
+    
+    population_copy = deepcopy(population)
+    new_population = []
+    for i in range(k):
+        position = random.randrange(len(population) - 1)
+        new_population.append(population_copy[position])
+        del population_copy[position]
+    
+    return new_population
+
 
 def run_ga(g, n, k, m, e):
     """
