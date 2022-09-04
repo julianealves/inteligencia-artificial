@@ -119,15 +119,28 @@ def mutate(individual, m):
 
 def create_population(n):
     """
-    n vetores aleatorios com 8 indices
+    Cria n indivíduos aleatórios para formar uma população
+    :param n: int - numero de individuos
     """
-    raise NotImplementedError
+    population = []
+    individual = [0,0,0,0,0,0,0,0]
+    i = 0
+    position = 0
+    while i < n:
+        while position < 8:
+            number = random.randrange(9)
+            individual[position] = number
+            position += 1
+        i += 1
+        population.append(individual)
+    
+    return population
     
 def select_individuals(k):
     """
-    seleciona k individuos aleatorios de uma população
-    """
-    
+    Seleciona k individuos aleatórios de uma população
+    :param k: int - numero de individuos
+    """    
     population_copy = deepcopy(population)
     new_population = []
     for i in range(k):
