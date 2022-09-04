@@ -175,6 +175,7 @@ def run_ga(g, n, k, m, e):
             population_copy.remove(individual)
             new_population.append(individual)
         while len(new_population) < n:
+            population = select_individuals(population, k)
             p1 = tournament(population) 
             population.remove(p1)
             p2 = tournament(population)
