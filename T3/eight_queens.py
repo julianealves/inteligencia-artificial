@@ -136,7 +136,7 @@ def create_population(n):
     
     return population
     
-def select_individuals(k):
+def select_individuals(population, k):
     """
     Seleciona k individuos aleatórios de uma população
     :param k: int - numero de individuos
