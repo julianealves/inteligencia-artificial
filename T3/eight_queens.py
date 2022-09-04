@@ -121,15 +121,14 @@ def create_population(n):
     """
     Cria n indivíduos aleatórios para formar uma população
     :param n: int - numero de individuos
+    :return: list - lista de indivíduos (população)
     """
     population = []
-    i = 0
-    while i < n:
+    for i in range(n):
         individual = []
-        for j in range(9):
+        for j in range(8):
             number = random.randrange(9)
             individual.append(number)
-        i += 1
         population.append(individual)
     
     return population
@@ -137,7 +136,9 @@ def create_population(n):
 def select_individuals(population, k):
     """
     Seleciona k individuos aleatórios de uma população
+    :param population: list - lista de indivíduos (população)
     :param k: int - numero de individuos
+    :return: list - lista de indivíduos (população)
     """    
     population_copy = deepcopy(population)
     new_population = []
