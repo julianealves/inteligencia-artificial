@@ -123,14 +123,12 @@ def create_population(n):
     :param n: int - numero de individuos
     """
     population = []
-    individual = [0,0,0,0,0,0,0,0]
     i = 0
-    position = 0
     while i < n:
-        while position < 8:
+        individual = []
+        for j in range(9):
             number = random.randrange(9)
-            individual[position] = number
-            position += 1
+            individual.append(number)
         i += 1
         population.append(individual)
     
