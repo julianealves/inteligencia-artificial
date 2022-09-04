@@ -167,10 +167,10 @@ def run_ga(g, n, k, m, e):
     best_individual = None
     
     population = create_population(n)
-    for i in g:
+    for i in range(g):
         population_copy = deepcopy(population)
         new_population=[]
-        for j in e:
+        for j in range(e):
             individual = tournament(population_copy)
             population_copy.remove(individual)
             new_population.append(individual)
