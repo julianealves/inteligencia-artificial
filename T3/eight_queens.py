@@ -1,5 +1,6 @@
 from copy import deepcopy
 import numpy as np
+import random
 
 
 def evaluate(individual):
@@ -106,7 +107,15 @@ def mutate(individual, m):
     :param m:int - probabilidade de mutacao
     :return:list - individuo apos mutacao (ou intacto, caso a prob. de mutacao nao seja satisfeita)
     """
-    raise NotImplementedError  # substituir pelo seu codigo
+    
+    random_number = random.random()
+    
+    if (random_number < m):
+        position = random.randrange(9)
+        number = random.randrange(9)
+        individual[position] = number
+        
+    return individual
 
 
 def run_ga(g, n, k, m, e):
