@@ -107,27 +107,25 @@ def mutate(individual, m):
     :param m:int - probabilidade de mutacao
     :return:list - individuo apos mutacao (ou intacto, caso a prob. de mutacao nao seja satisfeita)
     """
-    
     random_number = random.random()
-    
+    print(random_number)
     if (random_number < m):
-        position = random.randrange(8)
-        number = random.randrange(9)
-        individual[position] = number
-        
-    return individual
-
+       position = random.randrange(0,7)
+       number = random.randrange(1,9)
+       individual[position] = number
+       
+       return individual
+    
 def create_population(n):
     """
     Cria n indivíduos aleatórios para formar uma população
     :param n: int - numero de individuos
-    :return: list - lista de indivíduos (população)
     """
     population = []
     for i in range(n):
         individual = []
         for j in range(8):
-            number = random.randrange(9)
+            number = random.randrange(1,9)
             individual.append(number)
         population.append(individual)
     
