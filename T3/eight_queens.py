@@ -2,13 +2,11 @@ from copy import deepcopy
 import numpy as np
 import random
 
-
 def evaluate(individual):
     """
     Recebe um indivíduo (lista de inteiros) e retorna o número de ataques
     entre rainhas na configuração especificada pelo indivíduo.
     Por exemplo, no individuo [2,2,4,8,1,6,3,4], o número de ataques é 10.
-
     :param individual:list
     :return:int numero de ataques entre rainhas no individuo recebido
     """
@@ -23,7 +21,6 @@ def evaluate(individual):
     max_cols = len(individual) - 1
     max_rows = len(individual)
     min_row = 1
-    min_col = 0
     # Diagonal para cima
     for i in range(len(individual)):
         if individual[i] == 8 or i == max_cols:
@@ -108,13 +105,13 @@ def mutate(individual, m):
     :return:list - individuo apos mutacao (ou intacto, caso a prob. de mutacao nao seja satisfeita)
     """
     random_number = random.random()
-    print(random_number)
     if (random_number < m):
-       position = random.randrange(0,7)
-       number = random.randrange(1,9)
-       individual[position] = number
+        print('OI')
+        position = random.randrange(8)
+        number = random.randrange(1,9)
+        individual[position] = number
        
-       return individual
+    return individual
     
 def create_population(n):
     """
@@ -134,9 +131,7 @@ def create_population(n):
 def select_individuals(population, k):
     """
     Seleciona k individuos aleatórios de uma população
-    :param population: list - lista de indivíduos (população)
     :param k: int - numero de individuos
-    :return: list - lista de indivíduos (população)
     """    
     population_copy = deepcopy(population)
     new_population = []
@@ -146,7 +141,6 @@ def select_individuals(population, k):
         del population_copy[position]
     
     return new_population
-
 
 def run_ga(g, n, k, m, e):
     """
@@ -162,33 +156,46 @@ def run_ga(g, n, k, m, e):
     p2 = None
     f1 = None
     f2 = None
-    best_individual = None
+    best_individual = []
+    population = []
     
     population = create_population(n)
+    print(" Population:\n", population)
     for i in range(g):
         population_copy = deepcopy(population)
-        new_population=[]
+        new_population = []
         for j in range(e):
             individual = tournament(population_copy)
             population_copy.remove(individual)
             new_population.append(individual)
+        print("\n New Population (inicializacao elitismo):\n", new_population)
         while len(new_population) < n:
             population = select_individuals(population, k)
             p1 = tournament(population) 
             population.remove(p1)
             p2 = tournament(population)
             population.append(p1)
+            print("\n P1:\n", p1)
+            print("\n P2:\n", p2)
             f1, f2 = crossover(p1, p2, 3)
             f1 = mutate(f1, m)
             f2 = mutate(f2, m)
+            print("\n F1:\n", f1)
+            print("\n F2:\n", f2)
             new_population.append(f1)
             new_population.append(f2)            
-        population = deepcopy(new_population)    
+        population = deepcopy(new_population)  
+        print("\n population:\n", population)
         best_individual = tournament(population)
+        print("\n Best:\n", best_individual)
     return best_individual 
 
 
 if __name__=="__main__":
+    
+    best = run_ga(100, 40, 2, 0.3, 1) #estou testando por enquanto, depois ajeito aqui
+    print(f"Ataques: {evaluate(best)}")
+    
     individual = [2, 2, 4, 8, 1, 6, 3, 4]
     print(f"Numero de ataques: {evaluate(individual)}")
 
