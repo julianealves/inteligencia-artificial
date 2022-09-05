@@ -7,7 +7,12 @@ Maria Eduarda Neves Toneto - 00323751 - Turma A
 
 **NOTA:** Todas as bibliotecas utilizadas no trabalho são bibliotecas nativas do Python, com exceção do **Numpy**, que pode ser necessário instalar.
 
-**1. Genética da realeza:** Os paramêtros utilizados que resultam em uma execução bem sucedida, isto é, com zero ataques entre rainhas, são: g = , n = , k = , m = , e = .
+**1. Genética da realeza:** Os paramêtros utilizados que resultam em uma execução bem sucedida, isto é, com zero ataques entre rainhas, são: 
+   - ```g```: 
+   - ```n```: 
+   - ```k```: 2
+   - ```m```: 0.3
+   - ```e```: 1
 
 Gráfico com o maior, o menor e a média do número de conflitos para cada geração:
 
