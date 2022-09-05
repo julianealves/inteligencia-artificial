@@ -136,7 +136,7 @@ def select_individuals(population, k):
     population_copy = deepcopy(population)
     new_population = []
     for i in range(k):
-        position = random.randrange(len(population) - 1)
+        position = random.randrange(len(population_copy))
         new_population.append(population_copy[position])
         del population_copy[position]
     
