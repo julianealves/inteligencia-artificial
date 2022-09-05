@@ -82,7 +82,6 @@ def crossover(parent1, parent2, index):
     :param index:int
     :return:list,list
     """
-
     parent1_copy = deepcopy(parent1)
     parent2_copy = deepcopy(parent2)
     
@@ -116,6 +115,7 @@ def create_population(n):
     """
     Cria n indivíduos aleatórios para formar uma população
     :param n: int - numero de individuos
+    :return:list
     """
     population = []
     for i in range(n):
@@ -131,6 +131,7 @@ def select_individuals(population, k):
     """
     Seleciona k individuos aleatórios de uma população
     :param k: int - numero de individuos
+    :return:list
     """    
     population_copy = deepcopy(population)
     new_population = []
