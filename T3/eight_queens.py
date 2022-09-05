@@ -106,7 +106,6 @@ def mutate(individual, m):
     """
     random_number = random.random()
     if (random_number < m):
-        print('OI')
         position = random.randrange(8)
         number = random.randrange(1,9)
         individual[position] = number
