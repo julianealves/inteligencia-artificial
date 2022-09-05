@@ -159,7 +159,6 @@ def run_ga(g, n, k, m, e):
     population = []
     
     population = create_population(n)
-    print(" Population:\n", population)
     for i in range(g):
         population_copy = deepcopy(population)
         new_population = []
@@ -167,26 +166,19 @@ def run_ga(g, n, k, m, e):
             individual = tournament(population_copy)
             population_copy.remove(individual)
             new_population.append(individual)
-        print("\n New Population (inicializacao elitismo):\n", new_population)
         while len(new_population) < n:
             population = select_individuals(population, k)
             p1 = tournament(population) 
             population.remove(p1)
             p2 = tournament(population)
             population.append(p1)
-            print("\n P1:\n", p1)
-            print("\n P2:\n", p2)
             f1, f2 = crossover(p1, p2, 3)
             f1 = mutate(f1, m)
             f2 = mutate(f2, m)
-            print("\n F1:\n", f1)
-            print("\n F2:\n", f2)
             new_population.append(f1)
             new_population.append(f2)            
         population = deepcopy(new_population)  
-        print("\n population:\n", population)
         best_individual = tournament(population)
-        print("\n Best:\n", best_individual)
     return best_individual 
 
 
