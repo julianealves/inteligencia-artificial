@@ -111,7 +111,7 @@ def mutate(individual, m):
     random_number = random.random()
     
     if (random_number < m):
-        position = random.randrange(9)
+        position = random.randrange(8)
         number = random.randrange(9)
         individual[position] = number
         
