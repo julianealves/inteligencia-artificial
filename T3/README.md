@@ -13,8 +13,10 @@ Maria Eduarda Neves Toneto - 00323751 - Turma A
    - ```k```: 2
    - ```m```: 0.3
    - ```e```: 1
+Obs: foi utilizado o index = 3 para o crossover.
 
 * Para obter gráfico com o maior, o menor e a média do número de conflitos para cada geração foi utilizada a seguinte chamada da função: run_ga(35, 20, 2, 0.3 1)
+Obs: foi utilizado o index = 3 para o crossover.
 
 **2. Não me perguntes onde fica o Alegrete...:** Após realizar diversos testes alterando-se o valor de theta_0, theta_1, o número de iterações e o valor de alpha, chegou-se nos seguintes resultados:
    
