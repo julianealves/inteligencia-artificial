@@ -7,14 +7,14 @@ Maria Eduarda Neves Toneto - 00323751 - Turma A
 
 **NOTA:** Todas as bibliotecas utilizadas no trabalho são bibliotecas nativas do Python, com exceção do **Numpy**, que pode ser necessário instalar.
 
-**1. Genética da realeza:** Os paramêtros utilizados que resultam em uma execução bem sucedida, isto é, com zero ataques entre rainhas, são: 
-   - ```g```: 
-   - ```n```: 
+**1. Genética da realeza:** Os paramêtros utilizados que resultaram em uma execução bem sucedida, isto é, com zero ataques entre rainhas, são: 
+   - ```g```: 200
+   - ```n```: 10
    - ```k```: 2
    - ```m```: 0.3
    - ```e```: 1
 
-Gráfico com o maior, o menor e a média do número de conflitos para cada geração:
+* Para obter gráfico com o maior, o menor e a média do número de conflitos para cada geração foi utilizada a seguinte chamada da função: run_ga(35, 20, 2, 0.3 1)
 
 **2. Não me perguntes onde fica o Alegrete...:** Após realizar diversos testes alterando-se o valor de theta_0, theta_1, o número de iterações e o valor de alpha, chegou-se nos seguintes resultados:
    
