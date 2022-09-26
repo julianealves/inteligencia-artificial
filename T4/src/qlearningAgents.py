@@ -16,7 +16,7 @@ from game import *
 from learningAgents import ReinforcementAgent
 from featureExtractors import *
 
-import random,util,math,mdp
+import random,util,math
 
 class QLearningAgent(ReinforcementAgent):
     """
@@ -67,10 +67,13 @@ class QLearningAgent(ReinforcementAgent):
         if (legalActions == None):
             return 0.0
         
-        action_values = [x[1] for x in self.qValues.items() if x[0][0] == state]  #única coisa que não entendi foi essa linha, queria mudar, mas n entendi mt bem
+        actionValues = []
+        for v in self.qValues.items():
+            if v[0][0] == state:
+                actionValues.append(v[1])
         
-        if len(action_values) > 0:
-            return max(action_values)
+        if len(actionValues) > 0:
+            return max(actionValues)
 
 
     def computeActionFromQValues(self, state): 
@@ -97,6 +100,7 @@ class QLearningAgent(ReinforcementAgent):
                 action = currentAction
 
         return action
+    
 
     def getAction(self, state):
         """
