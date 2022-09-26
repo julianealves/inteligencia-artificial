@@ -67,7 +67,7 @@ class QLearningAgent(ReinforcementAgent):
         if (legalActions == None):
             return 0.0
         
-        action_values = [x[1] for x in self.qValues.items() if x[0][0] == state] 
+        action_values = [x[1] for x in self.qValues.items() if x[0][0] == state]  #única coisa que não entendi foi essa linha, queria mudar, mas n entendi mt bem
         
         if len(action_values) > 0:
             return max(action_values)
