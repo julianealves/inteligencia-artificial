@@ -48,15 +48,14 @@ class ValueIterationAgent(ValueEstimationAgent):
         for i in range(self.iterations):
             new_values = deepcopy(self.values)
             for s in self.mdp.getStates():
-                actions_values = []
-                for a in self.mdp.getPossibleActions(s):
-                    total_prob = 0
-                    for p in self.mdp.getTransitionStatesAndProbs(s, a):
-                        total_prob = total_prob + p[1]*self.getValue(p[0])
-                    actions_values.append(total_prob)
-                if len(actions_values) != 0:
-                    # Vk+1(s) = R(s) + Y*max(sum(P(s'|s,a)*Vk(s)))
-                    new_values[s] = self.mdp.getReward(s, None, None) + self.discount * max(actions_values)
+                action_values = util.Counter()
+                possible_actions = self.mdp.getPossibleActions(s)
+                if possible_actions:
+                    for a in self.mdp.getPossibleActions(s):
+                        for p in self.mdp.getTransitionStatesAndProbs(s, a):
+                            action_values[a] = action_values[a] + p[1]*self.getValue(p[0])
+                    # Vk+1(s) = R(s) + Y*max(sum(P(s'|s,a)*Vk(s')))
+                    new_values[s] = self.mdp.getReward(s, None, None) + self.discount * action_values[action_values.argMax()]
             self.values = new_values
 
     def getValue(self, state):
