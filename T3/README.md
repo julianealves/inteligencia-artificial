@@ -1,9 +1,9 @@
 # Inteligência Artificial
 Trabalho 3 da cadeira de IA (INF01048) - 2022/1
 
-Juliane da Rocha Alves - 00285681 - Turma B  
-Luiza Martins Spinelli Alves - 00326010 - Turma A  
-Maria Eduarda Neves Toneto - 00323751 - Turma A  
+Juliane da Rocha Alves - Turma B  
+Luiza Martins Spinelli Alves - Turma A  
+Maria Eduarda Neves Toneto - Turma A  
 
 **NOTA:** Todas as bibliotecas utilizadas no trabalho são bibliotecas nativas do Python, com exceção do **Numpy**, que pode ser necessário instalar.
 
